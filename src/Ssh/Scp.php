@@ -29,7 +29,7 @@ class Scp extends Subsystem
      */
     public function send( $local, $distant, $createMode = 0644 )
     {
-        if( ssh2_scp_send( $this->getResource(), $local, $distant, $createMode ) )
+        if( !ssh2_scp_send( $this->getResource(), $local, $distant, $createMode ) )
         {
             throw new RuntimeException( 'There was an error pulling the remote file.' );
         }
@@ -48,7 +48,7 @@ class Scp extends Subsystem
      */
     public function receive( $distant, $local )
     {
-        if( ssh2_scp_recv( $this->getResource(), $distant, $local ) )
+        if( !ssh2_scp_recv( $this->getResource(), $distant, $local ) )
         {
             throw new RuntimeException( 'There was an error transferring the remote file.' );
         }
